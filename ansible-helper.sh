@@ -37,7 +37,8 @@ function edit_role(){
 
 function display_banner() {
     echo "Ansible Helper"
-    echo -e "--------------\n"
+    echo -e "--------------"
+    echo -e "Set WORKSPACE env variable so that all the files will be created there\n"
     echo -e "usage: ./ansible-helper.sh <command> [argument]"
     echo -e "commands:"
     echo -e "\t--delete-role|-d <role_name>"
@@ -114,12 +115,8 @@ do
         filename="$1"
         shift
         ;;
-    --*)
-        echo "Invalid option: '$opt'" >&2
-        exit 1
-        ;;
     *)
-        # end of long options
+        display_banner
         break;
         ;;
    esac
