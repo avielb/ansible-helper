@@ -35,6 +35,25 @@ function edit_role(){
     echo "$EDITOR $WORKSPACE/roles/$1/tasks/main.yml"
 }
 
+function display_banner() {
+    echo "Ansible Helper"
+    echo -e "--------------\n"
+    echo -e "usage: ./ansible-helper.sh <command> [argument]"
+    echo -e "commands:"
+    echo -e "\t--delete-role|-d <role_name>"
+    echo -e "\t--edit-role|-e <role_name>"
+    echo -e "\t--create-role|-c <role_name>"
+    echo -e "\t--list-role|-l"
+    echo -e "\t--get-help|-g"
+    echo -e "\t--help"
+    echo -e "\t--version"
+}
+
+function get_help() {
+
+    /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome "http://docs.ansible.com/ansible/$1_module.html"
+}
+
 filename=default
 while (( $# > 0 ))
 do
@@ -74,8 +93,17 @@ do
         list_roles
         exit 0
         ;;
+    --get-help|-g)
+        if [[ $arg1 =~ ^[a-zA-Z_0-9]+$ ]]; then
+            get_help $arg1 
+        else
+            echo "ansible-helper $opt : module name could be only small letters, capital letters and '_'"
+            exit 1
+        fi
+        exit 0
+        ;;
     --help)
-        helpfunc
+        display_banner 
         exit 0
         ;;
     --version)
