@@ -44,7 +44,7 @@ function display_banner() {
     echo -e "\t--edit-role|-e <role_name>"
     echo -e "\t--create-role|-c <role_name>"
     echo -e "\t--list-role|-l"
-    echo -e "\t--get-help|-g"
+    echo -e "\t--module-info|-i"
     echo -e "\t--help"
     echo -e "\t--version"
 }
@@ -93,7 +93,7 @@ do
         list_roles
         exit 0
         ;;
-    --get-help|-g)
+    --module-info|-i)
         if [[ $arg1 =~ ^[a-zA-Z_0-9]+$ ]]; then
             get_help $arg1 
         else
